@@ -7,7 +7,7 @@ class Service(models.Model):
     
     name = models.CharField(max_length=255)
     description = models.TextField()
-    image = models.ImageField(upload_to='products/', blank=True, null=True)
+    image = models.FileField(upload_to='images/', null=False)
 
     class Meta:
         db_table = 'services_table'
