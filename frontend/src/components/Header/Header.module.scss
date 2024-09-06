@@ -1,0 +1,21 @@
+.header {
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  z-index: 100;
+
+  &__container {}
+
+  &__body {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+    justify-content: space-between;
+
+    padding: 2.5px 0;
+
+    @media (max-width: $tabletSize_Big) {
+      padding: 11px 0;
+    }
+  }
+}

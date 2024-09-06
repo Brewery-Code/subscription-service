@@ -1,7 +1,9 @@
 export default function Main() {
   return (
-    <div className="main__container">
-      Main
-    </div>
+    <main className="main">
+      <div className="main__container">
+        Main
+      </div>
+    </main>
   )
 }
