@@ -6,7 +6,7 @@ import styles from './Header.module.scss';
 export default function Header() {
   return (
     <header className={styles.header}>
-      <div className={styles.header__container}>
+      <div className="header__container">
         <div className={styles.header__body}>
           <Logo />
           <Nav />

@@ -1,0 +1,23 @@
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: $colorBlack23;
+
+  &__img {
+    @media (max-width: $tabletSize_Big) {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  &__title {
+    font-family: "Manrope";
+    font-weight: 600;
+    line-height: 130%;
+
+    @media (max-width: $mobileSize) {
+      display: none;
+    }
+  }
+}

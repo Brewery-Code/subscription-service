@@ -1,0 +1,123 @@
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 46px;
+
+  @media (max-width: 1064px) {
+    gap: 30px;
+  }
+
+  @media (max-width: $tabletSize_Big) {
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+    padding: 28px 36px 12px 36px;
+    background-color: white;
+    border-radius: 12px;
+
+    box-shadow: 0 12px 28px rgba(177, 177, 177, 0.2);
+  }
+
+  &__item {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    &_burger {
+      display: none;
+
+      @media (max-width: $tabletSize_Big) {
+        display: flex;
+      }
+    }
+
+    &_burger-icon {
+      display: none;
+
+      @media (max-width: $tabletSize_Big) {
+        display: block;
+      }
+    }
+
+    a {
+      color: $colorBlack51;
+    }
+
+    @media (max-width: $tabletSize_Big) {
+      align-self: center;
+      width: 100%;
+      font-size: 17px;
+      line-height: 150%;
+      gap: 15px;
+
+      a {
+        color: $colorBlack7;
+      }
+    }
+  }
+
+  .subscriptions {
+    position: relative;
+
+    @media (max-width: $tabletSize_Big) {
+      position: absolute;
+      bottom: calc(-100% - 16px);
+      width: 100%;
+    }
+
+    @media (pointer: fine) {
+      &:hover .subscriptions__button-arrow {
+        transform: rotate(90deg);
+      }
+    }
+
+    &__button {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      background-color: white;
+      font-size: 16px;
+
+      @media (max-width: $tabletSize_Big) {
+        display: none;
+      }
+    }
+
+    &__button-arrow {
+      transition: transform 0.3s ease;
+    }
+
+    &__menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: -23px;
+      width: 205px;
+      padding: 27px 23px 24px 23px;
+
+      display: none;
+      flex-direction: column;
+      gap: 20px;
+
+      transition: opacity 0.3s ease;
+      opacity: 0;
+      background-color: white;
+      border-radius: 16px;
+
+      box-shadow: 0 20px 48px #b1b1b163;
+
+      @media (max-width:$tabletSize_Big) {
+        position: static;
+        display: flex;
+        gap: 24px;
+        opacity: 1;
+        width: 100%;
+        padding: 28px 36px 12px 36px;
+        border-radius: 12px;
+        margin-bottom: 50px;
+        box-shadow: 0 12px 28px rgba(177, 177, 177, 0.2);
+      }
+    }
+  }
+}

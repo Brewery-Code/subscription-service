@@ -1,0 +1,27 @@
+.nav {
+  display: grid;
+  grid-template-columns: 1fr auto;
+
+  @media (max-width: $tabletSize_Big) {
+    position: fixed;
+    margin-top: 54px;
+    padding: 24px 24px 0 24px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    left: 0;
+    right: 0;
+    background-color: $colorBackground;
+
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+
+    top: 0;
+    bottom: 0;
+    position: fixed;
+
+    @media (max-height: 623px) {
+      padding-top: 14px;
+      overflow-y: auto;
+    }
+  }
+}
