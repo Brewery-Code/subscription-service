@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { Component, useState } from 'react';
+import axios from 'axios';
+import React from 'react';
 
 import arrow from '../../../../assets/icons/arrow-slim.svg';
 import about from '../../../../assets/icons/about.svg';
@@ -12,6 +14,26 @@ import MenuItem from './MenuItem/MenuItem';
 import styles from './Menu.module.scss';
 
 export default function Menu() {
+  function componentDidMount() {
+    axios.get('http://localhost:8000/api/services')
+      .then(res => {
+        const data = res.data;
+        console.log(data); // Виводимо дані в консоль
+        this.setState({
+          details: data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  componentDidMount();
+
+
+  // console.log
+
+
   const [state, setState] = useState(false);
 
   function toggleState() {
