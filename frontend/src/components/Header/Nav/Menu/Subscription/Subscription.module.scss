@@ -1,0 +1,19 @@
+.subscription__menu-item {
+  font-size: 17px;
+  line-height: 150%;
+
+  a {
+    display: block;
+    color: $colorBlack23;
+
+    &:hover {
+      color: $colorBlue;
+    }
+  }
+
+  @media (max-width:$tabletSize_Big) {
+    a {
+      color: $colorBlack7;
+    }
+  }
+}

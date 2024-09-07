@@ -19,47 +19,11 @@
     box-shadow: 0 12px 28px rgba(177, 177, 177, 0.2);
   }
 
-  &__item {
+  .subscriptions {
+    position: relative;
     align-self: stretch;
     display: flex;
     align-items: center;
-    position: relative;
-
-    &_burger {
-      display: none;
-
-      @media (max-width: $tabletSize_Big) {
-        display: flex;
-      }
-    }
-
-    &_burger-icon {
-      display: none;
-
-      @media (max-width: $tabletSize_Big) {
-        display: block;
-      }
-    }
-
-    a {
-      color: $colorBlack51;
-    }
-
-    @media (max-width: $tabletSize_Big) {
-      align-self: center;
-      width: 100%;
-      font-size: 17px;
-      line-height: 150%;
-      gap: 15px;
-
-      a {
-        color: $colorBlack7;
-      }
-    }
-  }
-
-  .subscriptions {
-    position: relative;
 
     @media (max-width: $tabletSize_Big) {
       position: absolute;
@@ -70,6 +34,24 @@
     @media (pointer: fine) {
       &:hover .subscriptions__button-arrow {
         transform: rotate(90deg);
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 67%;
+        left: 43%;
+        transform: translateX(-50%);
+        width: 0;
+        background-color: $colorBlue;
+        height: 1px;
+        transition: width 0.3s ease, left 0.3s ease;
+      }
+
+      &:hover {
+        &::after {
+          width: 85%;
+        }
       }
     }
 
@@ -96,12 +78,13 @@
       width: 205px;
       padding: 27px 23px 24px 23px;
 
-      display: none;
+      display: flex;
       flex-direction: column;
       gap: 20px;
 
-      transition: opacity 0.3s ease;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
       opacity: 0;
+      visibility: hidden;
       background-color: white;
       border-radius: 16px;
 
@@ -117,6 +100,11 @@
         border-radius: 12px;
         margin-bottom: 50px;
         box-shadow: 0 12px 28px rgba(177, 177, 177, 0.2);
+      }
+
+      &_active {
+        opacity: 1;
+        visibility: inherit;
       }
     }
   }

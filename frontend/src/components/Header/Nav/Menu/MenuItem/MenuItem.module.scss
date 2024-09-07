@@ -1,0 +1,70 @@
+.menu__item {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &_burger {
+    display: none;
+
+    @media (max-width: $tabletSize_Big) {
+      display: flex;
+    }
+  }
+
+  &_burger-icon {
+    display: none;
+
+    @media (max-width: $tabletSize_Big) {
+      display: block;
+    }
+  }
+
+  a {
+    color: $colorBlack51;
+  }
+
+  @media (max-width: $tabletSize_Big) {
+    align-self: center;
+    width: 100%;
+    font-size: 17px;
+    line-height: 150%;
+    gap: 15px;
+
+    a {
+      color: $colorBlack7;
+    }
+  }
+
+  @media (pointer: fine) {
+    &::after {
+      content: "";
+      position: absolute;
+      top: 67%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      background-color: $colorBlue;
+      height: 1px;
+      transition: width 0.3s ease, left 0.3s ease;
+    }
+
+    &:first-of-type {
+      &::after {
+        left: 43%;
+      }
+    }
+
+    &:hover {
+      &::after {
+        width: 100%;
+      }
+
+      &:first-of-type {
+        &::after {
+          width: 85%;
+        }
+      }
+    }
+  }
+}
