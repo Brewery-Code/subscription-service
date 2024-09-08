@@ -1,0 +1,8 @@
+.footer {
+  background-color: $colorBlue;
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+  }
+}

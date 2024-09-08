@@ -1,0 +1,18 @@
+.content {
+  display: grid;
+  grid-template-columns: 153px auto auto auto;
+  justify-content: space-between;
+  padding: 40px 0;
+
+  color: #fff;
+
+  @media (max-width: 662px) {
+    grid-template-columns: 1fr 1fr;
+    grid-row: 1fr 1fr 1fr;
+    gap: 40px;
+  }
+
+  a {
+    color: #fff;
+  }
+}
