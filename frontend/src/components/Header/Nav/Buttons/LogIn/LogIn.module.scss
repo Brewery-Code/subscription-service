@@ -1,0 +1,26 @@
+.log-in {
+  padding: 9px 43px;
+  background-color: $colorBlue;
+  border-radius: 12px;
+  border: 1px solid $colorBlue;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 130%;
+  color: white;
+
+  &:hover {
+    background-color: white;
+    color: $colorBlack23;
+  }
+
+  @media (max-width: $tabletSize_Big) {
+    order: 1;
+    flex-basis: 100%;
+    width: 100%;
+
+    background-color: transparent;
+    color: $colorBlue;
+  }
+}

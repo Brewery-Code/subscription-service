@@ -1,4 +1,4 @@
-import { Component, useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import React from 'react';
 
@@ -14,55 +14,43 @@ import MenuItem from './MenuItem/MenuItem';
 import styles from './Menu.module.scss';
 
 export default function Menu() {
-  function componentDidMount() {
+  const [subscriptionMenuState, setSubscriptionMenuState] = useState(false);
+  const [details, setDetails] = useState(null); // Створюємо стан для збереження даних з API
+
+  useEffect(() => {
     axios.get('http://localhost:8000/api/services')
       .then(res => {
         const data = res.data;
-        console.log(data); // Виводимо дані в консоль
-        this.setState({
-          details: data
-        });
+        setDetails(data); // Оновлюємо стан, коли отримали дані
       })
       .catch(err => {
         console.log(err);
       });
-  }
-
-  componentDidMount();
-
-
-  // console.log
-
-
-  const [state, setState] = useState(false);
+  }, []); // Порожній масив залежностей означає, що цей код виконається лише при першому рендері (еквівалентно componentDidMount)
 
   function toggleState() {
-    setState(prevState => !prevState);
+    setSubscriptionMenuState(prevState => !prevState);
   }
 
   function isMobile() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   }
 
-  function openMenu() {
-    toggleState();
-  }
-
   return (
     <ul className={styles.menu}>
       <li className={styles.subscriptions}
-        onClick={isMobile() ? openMenu : undefined}
-        onMouseEnter={!isMobile() ? openMenu : undefined}
-        onMouseLeave={!isMobile() ? openMenu : undefined}
+        onClick={isMobile() ? toggleState : undefined}
+        onMouseEnter={!isMobile() ? toggleState : undefined}
+        onMouseLeave={!isMobile() ? toggleState : undefined}
       >
         <button className={styles.subscriptions__button}>
           <h3>Subscriptions</h3>
           <img className={styles['subscriptions__button-arrow']} src={arrow} alt="arrow-icon" />
         </button>
-        <ul className={`${styles.subscriptions__menu} ${state ? styles.subscriptions__menu_active : ''}`}>
-          <Subscription><a href="">Netflix</a></Subscription>
-          <Subscription><a href="">YouTube Premium</a></Subscription>
-          <Subscription><a href="">Spotify</a></Subscription>
+        <ul className={`${styles.subscriptions__menu} ${subscriptionMenuState ? styles.subscriptions__menu_active : ''}`}>
+          {details?.map((subscription) => (
+            <Subscription key={subscription.id}><a href="#">{subscription.name}</a></Subscription>
+          ))}
         </ul>
       </li>
       <MenuItem text="Home" img={home} link="#" alt="Home-icon" burger={true} />

@@ -24,4 +24,8 @@
       overflow-y: auto;
     }
   }
+
+  &_active {
+    transform: translateX(0%);
+  }
 }
