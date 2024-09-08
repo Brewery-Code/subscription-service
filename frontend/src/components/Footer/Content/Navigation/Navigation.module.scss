@@ -1,0 +1,20 @@
+.navigation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  @media (max-width: 662px) {}
+
+  &__title {
+    margin-bottom: 8px;
+
+    font-size: 18px;
+    line-height: 150%;
+  }
+
+  &__item {
+    line-height: 150%;
+  }
+
+  &__faq {}
+}

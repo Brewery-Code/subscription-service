@@ -6,10 +6,16 @@ import styls from './Language.module.scss';
 
 export default function Language() {
   const [languageListState, setLanguageListState] = useState(false);
-
   const toggleLanguageListState = () => {
     setLanguageListState(prevState => !prevState);
+    rotateArrow();
   }
+
+  const [arrowRotate, setArrowRotate] = useState(0);
+  const rotateArrow = () => {
+    setArrowRotate(prev => (prev === 0 ? 90 : 0));
+  };
+
 
   function isMobile() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -22,7 +28,12 @@ export default function Language() {
       onMouseLeave={!isMobile() ? toggleLanguageListState : undefined}
     >
       <button className={styls['language__selected-language']}>
-        <h3>EN</h3><img className={styls['language__selected-language-arrow']} src={arrow} alt="arrow-icon" />
+        <h3>EN</h3>
+        <img className={styls['language__selected-language-arrow']}
+          src={arrow}
+          alt="arrow-icon"
+          style={isMobile() ? { transform: `rotate(${arrowRotate}deg)` } : {}}
+        />
       </button>
       <ul className={`${styls.language__list} ${languageListState ? styls.language__list_active : ''}`}>
         <li className={styls['language__list-item']}><button>English</button></li>

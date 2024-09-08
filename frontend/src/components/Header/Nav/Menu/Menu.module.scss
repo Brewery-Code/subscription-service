@@ -92,7 +92,7 @@
 
       @media (max-width:$tabletSize_Big) {
         position: static;
-        display: flex;
+        display: none;
         gap: 24px;
         opacity: 1;
         width: 100%;
@@ -107,5 +107,19 @@
         visibility: inherit;
       }
     }
+  }
+}
+
+.subscriptions-menu-burger {
+  display: none;
+  margin-top: 16px;
+  padding: 16px;
+
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(177, 177, 177, 0.2);
+
+  @media (max-width: $tabletSize_Big) {
+    display: block;
   }
 }
