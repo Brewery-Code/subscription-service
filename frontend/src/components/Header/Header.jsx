@@ -19,7 +19,7 @@ export default function Header() {
         <div className={styles.header__body}>
           <Logo />
           <Nav menuStatus={menuStatus} />
-          <BurgerButton toggleMenuStatus={toggleMenuStatus} />
+          <BurgerButton toggleMenuStatus={toggleMenuStatus} menuStatus={menuStatus} />
         </div>
       </div>
     </header>
