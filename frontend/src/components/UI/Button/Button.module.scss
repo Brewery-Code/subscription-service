@@ -1,0 +1,98 @@
+.button {
+  padding-top: 0.941em;
+  padding-bottom: 0.941em;
+  border-radius: 0.941em;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 130%;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  @media (max-width: $tabletSize_Big) {
+    font-size: 0.9375rem;
+  }
+
+  @media (max-width: 524px) {
+    width: 100%;
+  }
+
+  &_start-using {
+    padding-left: 3.38em;
+    padding-right: 3.38em;
+    background-color: #fff;
+    border: 1px solid #fff;
+    color: $colorBlack23;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  &_learn-more {
+    padding-left: 1.41em;
+    padding-right: 1.41em;
+    background-color: $colorBlue;
+    border: 1px solid $colorBlue;
+    color: #fff;
+
+    &:hover {
+      color: $colorBlack23;
+    }
+  }
+
+  &_support {
+    padding-left: 5.14em;
+    padding-right: 5.14em;
+    max-width: 243px;
+    text-align: center;
+
+    color: #fff;
+
+    background-color: $colorBlack51;
+    border: 1px solid rgb(0, 0, 0);
+
+    &:hover {
+      background-color: transparent;
+      color: $colorBlack23;
+    }
+
+    @media (max-width: $tabletSize_Big) {
+      font-size: 1.0625rem;
+    }
+
+    @media (max-width: 524px) {
+      font-size: 1.0625rem;
+      padding-top: 0.764em;
+      padding-bottom: 0.764em;
+    }
+  }
+
+  &_request {
+    background-color: #fff;
+    border: 1px solid #fff;
+    color: $colorBlack23;
+    max-width: 296px;
+    width: 100%;
+
+    &:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 554px) {
+      max-width: 554px;
+      width: 100%;
+    }
+  }
+
+  &_modal-apply {
+    width: 100%;
+
+    font-size: 1.125rem;
+    background-color: $colorBlue;
+    color: #fff;
+  }
+}
