@@ -1,5 +1,6 @@
 import Logo from "./Logo/Logo";
 import Nav from "./Nav/Nav";
+import BurgerButton from "./BurgerButton/BurgerButton";
 
 import styles from './Header.module.scss';
 
@@ -10,6 +11,7 @@ export default function Header() {
         <div className={styles.header__body}>
           <Logo />
           <Nav />
+          <BurgerButton />
         </div>
       </div>
     </header>
