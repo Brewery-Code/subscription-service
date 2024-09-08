@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from subscriptions.models import Service, SubscriptionPlan, Subscription
+from subscriptions.models import Service, SubscriptionPlan
+from order.models import Subscription
 
 
 class ServiceSerializer(serializers.ModelSerializer):

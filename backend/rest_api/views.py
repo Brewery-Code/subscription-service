@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from subscriptions.models import Service, SubscriptionPlan, Subscription
+from subscriptions.models import Service, SubscriptionPlan
+from order.models import Subscription
 from .serializer import ServiceSerializer, SubscriptionPlanSerializer, SubscriptionSerializer
 
 
