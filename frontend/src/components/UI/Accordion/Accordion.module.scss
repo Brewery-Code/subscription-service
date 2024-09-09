@@ -1,0 +1,115 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.accordion {
+  background-color: #fff;
+  border-radius: 32px;
+  box-shadow: 0 12px 28px rgba(244, 245, 245, 0.2);
+  overflow: hidden;
+
+  transition: padding-bottom 0.2s ease;
+
+  &_active {
+    padding-bottom: 40px;
+
+    @media (max-width: $tabletSize_Big) {
+      padding-bottom: 20px;
+    }
+  }
+
+  &__button {
+    position: relative;
+
+    padding: 38px 40px;
+    width: 100%;
+    text-align: start;
+
+    font-size: 18px;
+    line-height: 150%;
+    color: $colorBlack23;
+    font-weight: 500;
+    overflow-wrap: break-word;
+    word-break: break-word;
+
+    background-color: #fff;
+    border-radius: 32px;
+
+    @media (max-width: $tabletSize_Big) {
+      padding: 20px;
+      font-size: 17px;
+    }
+
+    @media (max-width: 360px) {
+      font-size: 16px;
+      line-height: 140%;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      right: 53px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 13px;
+      height: 7px;
+      background-image: url(../../../assets/icons/arrow-bold.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      transition: transform 0.4s ease;
+
+      @media (max-width: $tabletSize_Big) {
+        right: 33px;
+      }
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background-color: rgba(23, 23, 23, 0.05);
+      border-radius: 12px;
+
+      @media (max-width: $tabletSize_Big) {
+        right: 20px;
+      }
+    }
+
+    &_active {
+      &::before {
+        transform: rotate(180deg) translateY(40%);
+      }
+    }
+
+    h3 {
+      @media (max-width: 944px) {
+        width: 80%;
+      }
+    }
+  }
+
+
+  &__content {
+    height: 0;
+    padding: 0 40px;
+    overflow: hidden;
+
+    font-size: 18px;
+    line-height: 150%;
+    color: $colorBlack51;
+
+    transition: height 0.5s ease;
+
+    @media (max-width: $tabletSize_Big) {
+      padding: 0 20px;
+      font-size: 17px;
+    }
+  }
+}

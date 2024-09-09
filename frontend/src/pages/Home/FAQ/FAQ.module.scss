@@ -1,0 +1,33 @@
+.faq {
+  margin-top: 120px;
+
+  @media (max-width: $tabletSize_Big) {
+    margin-top: 100px;
+  }
+
+  .content {
+    margin-top: 41px;
+
+    @media (max-width: $tabletSize_Big) {
+      margin-top: 32px;
+    }
+
+    @media (max-width: $mobileSize) {
+      margin-top: 28px;
+    }
+  }
+
+  .button {
+    display: block;
+    margin: 40px auto 0 auto;
+
+
+    @media (max-width: $tabletSize_Big) {
+      margin: 32px auto 0 auto;
+    }
+
+    @media (max-width: $mobileSize) {
+      margin: 28px auto 0 auto;
+    }
+  }
+}

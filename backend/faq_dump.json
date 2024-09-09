@@ -1,0 +1,58 @@
+[
+{
+  "model": "core.faq",
+  "pk": 1,
+  "fields": {
+    "question": "What types of subscriptions are available on your site?",
+    "answer": "We offer a variety of subscription services, including music streaming platforms like Spotify, video streaming services such as YouTube Premium, and more. Check our subscription catalog for the full list of available options."
+  }
+},
+{
+  "model": "core.faq",
+  "pk": 2,
+  "fields": {
+    "question": "How can I purchase a subscription through your site?",
+    "answer": "To purchase a subscription, simply browse our catalog, select the service you’re interested in, and follow the checkout process. You’ll be prompted to enter your payment information and any necessary details for the subscription service."
+  }
+},
+{
+  "model": "core.faq",
+  "pk": 3,
+  "fields": {
+    "question": "Are the subscriptions offered on your site legitimate?",
+    "answer": "Yes, all subscriptions available on our site are legitimate and officially licensed. We work directly with service providers to ensure that you receive valid and authorized subscriptions."
+  }
+},
+{
+  "model": "core.faq",
+  "pk": 4,
+  "fields": {
+    "question": "How do I manage or cancel my subscription?",
+    "answer": "You can manage or cancel your subscription by logging into your account on our site and accessing the \"Subscriptions\" section. From there, you’ll be able to view your active subscriptions and make any necessary changes."
+  }
+},
+{
+  "model": "core.faq",
+  "pk": 5,
+  "fields": {
+    "question": "What payment methods do you accept?",
+    "answer": "We accept a variety of payment methods including credit/debit cards, PayPal, and other secure payment options. You can choose your preferred method during the checkout process."
+  }
+},
+{
+  "model": "core.faq",
+  "pk": 6,
+  "fields": {
+    "question": "What should I do if I encounter issues with my subscription?",
+    "answer": "If you experience any issues with your subscription, please contact our customer support team through the “Support” page on our site. We’re here to help resolve any problems and ensure that you have a smooth experience."
+  }
+},
+{
+  "model": "core.faq",
+  "pk": 7,
+  "fields": {
+    "question": "Can I get a refund if I am not satisfied with my subscription?",
+    "answer": "Refunds are subject to the terms and conditions of each subscription service. Please review the specific refund policy for the service you’ve subscribed to, and contact our customer support team if you need further assistance with refunds or issues."
+  }
+}
+]
