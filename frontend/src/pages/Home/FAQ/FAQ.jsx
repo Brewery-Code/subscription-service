@@ -21,6 +21,7 @@ export default function FAQ() {
       });
   }, []);
 
+
   return (
     <section className={styles.faq}>
       <Title >FAQ</Title>
