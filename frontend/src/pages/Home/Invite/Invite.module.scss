@@ -42,14 +42,13 @@
 
   &__text {
     grid-column: 1 / 2;
+    color: #fff;
+    line-height: 150%;
 
     @media (max-width: 541px) {
       grid-column: 1 / 2;
       grid-row: 2 / 3;
     }
-
-    color: #fff;
-    line-height: 150%;
   }
 
   .row {
