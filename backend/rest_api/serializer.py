@@ -11,7 +11,7 @@ class ServiceSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Service
-        fields = ['id', 'name', 'description', 'image']
+        fields = ['id', 'name', 'description', 'image', 'bg_color']
 
 class SubscriptionPlanSerializer(serializers.ModelSerializer):
     """Серіалізатор для моделі SubscriptionPlan"""

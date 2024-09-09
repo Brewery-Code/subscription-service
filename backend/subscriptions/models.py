@@ -17,6 +17,7 @@ class Service(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     image = models.FileField(upload_to=upload_to, null=False)
+    bg_color = models.CharField(max_length=50, blank=True)
 
     class Meta:
         db_table = 'services_table'
