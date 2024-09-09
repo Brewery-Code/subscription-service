@@ -1,0 +1,115 @@
+.steps {
+  margin-top: 139px;
+
+  @media (max-width: $tabletSize_Big) {
+    margin-top: 100px;
+  }
+
+  &__list {
+    margin-top: 37px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+
+    @media (max-width: $tabletSize_Big) {
+      margin-top: 32px;
+    }
+
+    @media (max-width: 618px) {
+      gap: 10px;
+    }
+
+    @media (max-width: 612px) {
+      margin-top: 29px;
+    }
+
+    @media (max-width: 524px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__step {}
+
+  .step {
+    position: relative;
+    padding: 10px 10px 40px 40px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 3fr 1fr;
+    align-items: end;
+    row-gap: 27px;
+
+    background-color: #fff;
+    border-radius: 32px;
+    box-shadow: 0 12px 28px rgba(244, 245, 245, 0.2);
+
+    @media (max-width: $tabletSize_Big) {
+      grid-template-rows: 2.5fr 1fr;
+      padding: 20px;
+      align-items: center;
+      row-gap: 12px;
+
+    }
+
+    @media (max-width: 690px) {
+      padding: 15px 10px;
+    }
+
+    @media (max-width: 612px) {
+      justify-self: center;
+      grid-template-rows: 1fr 1fr;
+      row-gap: 5px;
+      padding: 10px;
+    }
+
+    @media (max-width: 524px) {
+      grid-template-rows: 1fr auto;
+      width: 100%;
+      padding: 20px;
+    }
+
+    &__img {
+      width: 100%;
+      object-fit: scale-down;
+
+      @media (max-width: 612px) {
+        width: 100%;
+        justify-self: end;
+      }
+
+      @media (max-width: 524px) {
+        width: 50%;
+      }
+
+      @media (max-width: $mobileSize) {
+        justify-self: end;
+        width: 60%;
+      }
+    }
+
+    &__title {
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 140%;
+      color: $colorBlack23;
+
+      @media (max-width: $tabletSize_Big) {
+        font-size: 19px;
+      }
+    }
+
+    &__content {
+      align-self: start;
+      grid-column: span 2;
+
+      font-size: 18px;
+      line-height: 150%;
+      color: $colorBlack51;
+
+      @media (max-width: $tabletSize_Big) {
+        font-size: 14px;
+      }
+    }
+  }
+}

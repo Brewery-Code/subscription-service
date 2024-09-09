@@ -14,10 +14,16 @@ body {
 .main {
   flex: 1 1 auto;
   background-color: $colorBackground;
-  margin-top: 60px;
+  padding-top: 120px;
+  padding-bottom: 120px;
 
   @media (max-width: $tabletSize_Big) {
-    margin-top: 54px;
+    padding-top: 106px;
+    padding-bottom: 80px;
+  }
+
+  @media (max-width: $mobileSize) {
+    padding-top: 102px;
   }
 }
 

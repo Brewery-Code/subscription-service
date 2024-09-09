@@ -1,13 +1,4 @@
 .startup {
-  margin-top: 60px;
-
-  @media (max-width: $tabletSize_Big) {
-    margin-top: 52px;
-  }
-
-  @media (max-width: 524px) {
-    margin-top: 48px;
-  }
 
   &__body {
     display: grid;
