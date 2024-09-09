@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'subscriptions.apps.SubscriptionsConfig',
     'order.apps.OrderConfig',
     'user.apps.UserConfig',
+    'core.apps.CoreConfig',
     'rest_framework',
     'corsheaders',
     

@@ -1,8 +1,11 @@
+from dataclasses import field
 from rest_framework import serializers
 from subscriptions.models import Service, SubscriptionPlan
 from order.models import Subscription
+from core.models import FAQ
 
 
+# Subscriptions app
 class ServiceSerializer(serializers.ModelSerializer):
     """Серіалізатор для моделі Service"""
     
@@ -18,6 +21,7 @@ class SubscriptionPlanSerializer(serializers.ModelSerializer):
         fields = ['id', 'service', 'name', 'price', 'duration', 'is_active']
 
 
+# Order app
 class SubscriptionSerializer(serializers.ModelSerializer):
     """Серіалізатор для моделі Subscription"""
    
@@ -28,3 +32,11 @@ class SubscriptionSerializer(serializers.ModelSerializer):
         model = Subscription
         fields = ['id', 'user', 'service', 'plan', 'start_date', 'end_date', 'is_active', 'status']
 
+
+# Core app
+class FAQSerializer(serializers.ModelSerializer):
+    """Серіалізатор для моделі FAQ"""
+    
+    class Meta:
+        model = FAQ
+        fields = ['id', 'question', 'answer']
