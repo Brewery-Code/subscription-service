@@ -64,10 +64,10 @@ export default function Menu() {
             ))}
           </ul>
         </li>
-        <MenuItem text="Home" img={home} link="#" alt="Home-icon" burger={true} />
-        <MenuItem text="FAQ" img={FAQ} link="#" alt="FAQ-icon" />
-        <MenuItem text="Support" img={support} link="#" alt="Support-icon" />
-        <MenuItem text="About" img={about} link="#" alt="About-icon" />
+        <MenuItem text="Home" img={home} link="/home" alt="Home-icon" burger={true} />
+        <MenuItem text="FAQ" img={FAQ} link="/faq" alt="FAQ-icon" />
+        <MenuItem text="Support" img={support} link="/support" alt="Support-icon" />
+        <MenuItem text="About" img={about} link="/about" alt="About-icon" />
       </ul>
       <ul className={styles['subscriptions-menu-burger']}>
         {details?.map((subscription) => (

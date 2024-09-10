@@ -1,0 +1,19 @@
+.faq {
+  &__list {
+    margin-top: 48px;
+    margin-bottom: 40px;
+
+    @media (max-width: $tabletSize_Big) {
+      margin: 32px 0;
+    }
+
+    @media (max-width: $mobileSize) {
+      margin: 28px 0;
+    }
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+  }
+}

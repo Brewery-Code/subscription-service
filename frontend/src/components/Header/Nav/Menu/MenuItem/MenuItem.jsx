@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+
 import styles from './MenuItem.module.scss';
 
 export default function MenuItem({ text, img, link, alt, burger }) {
@@ -8,7 +10,7 @@ export default function MenuItem({ text, img, link, alt, burger }) {
   return (
     <li className={liClass}>
       <img className={styles['menu__item_burger-icon']} src={img} alt={alt} />
-      <a href={link}>{text}</a>
+      <NavLink to={link}>{text}</NavLink>
     </li>
   )
 }

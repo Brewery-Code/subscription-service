@@ -14,7 +14,6 @@ export default function Subscriptions() {
       .then(res => {
         const data = res.data;
         setDetails(data);
-        console.log(data);
       })
       .catch(err => {
         console.log(err);
@@ -29,7 +28,6 @@ export default function Subscriptions() {
           <div className={`${styles.subscription}`} key={subscription.id}>
             <div className={styles.subscription__content}>
               <h3 className={`${styles.subscription__title}`}>{subscription.name}</h3>
-              {/* <h3 className={`${styles.subscription__title_shortcut}`}>{subscription.name}</h3> */}
               <p className={styles.subscription__description}>
                 {subscription.description}
               </p>

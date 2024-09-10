@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import Accordion from '../../../components/UI/Accordion/Accordion';
 import Title from '../../../components/UI/Title/Title';
+import Button from '../../../components/UI/Button/Button';
 
 import styles from './FAQ.module.scss';
 
@@ -27,6 +28,9 @@ export default function FAQ() {
       <Title >FAQ</Title>
       <div className={styles.content}>
         <Accordion faqList={faqList} />
+      </div>
+      <div className={styles.button}>
+        <Button type={'support'}>Support</Button>
       </div>
     </section>
   )
