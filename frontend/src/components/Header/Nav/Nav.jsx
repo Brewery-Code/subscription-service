@@ -3,10 +3,10 @@ import Buttons from './Buttons/Buttons';
 
 import styles from './Nav.module.scss';
 
-export default function Nav({ menuStatus }) {
+export default function Nav({ state, menuStatus }) {
   return (
     <nav className={`${styles.nav} ${menuStatus ? styles.nav_active : ''}`}>
-      <Menu />
+      <Menu services={state.services} />
       <Buttons />
     </nav>
   )

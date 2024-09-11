@@ -6,7 +6,7 @@ import BurgerButton from "./BurgerButton/BurgerButton";
 
 import styles from './Header.module.scss';
 
-export default function Header() {
+export default function Header({ state }) {
   const [menuStatus, setMenuStatus] = useState(false);
 
   const toggleMenuStatus = () => {
@@ -18,7 +18,7 @@ export default function Header() {
       <div className="header__container">
         <div className={styles.header__body}>
           <Logo />
-          <Nav menuStatus={menuStatus} />
+          <Nav state={state} menuStatus={menuStatus} />
           <BurgerButton toggleMenuStatus={toggleMenuStatus} menuStatus={menuStatus} />
         </div>
       </div>

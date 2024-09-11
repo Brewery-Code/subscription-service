@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
 import React from 'react';
 
 import arrow from '../../../../assets/icons/arrow-slim.svg';
@@ -13,25 +12,13 @@ import MenuItem from './MenuItem/MenuItem';
 
 import styles from './Menu.module.scss';
 
-export default function Menu() {
+export default function Menu({ services }) {
   const [subscriptionMenuState, setSubscriptionMenuState] = useState(false);
-  const [details, setDetails] = useState(null); // Створюємо стан для збереження даних з API
 
   const [arrowRotate, setArrowRotate] = useState(0);
   const rotateArrow = () => {
     setArrowRotate(prev => (prev === 0 ? 90 : 0));
   };
-
-  useEffect(() => {
-    axios.get('http://localhost:8000/api/services')
-      .then(res => {
-        const data = res.data;
-        setDetails(data); // Оновлюємо стан, коли отримали дані
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []); // Порожній масив залежностей означає, що цей код виконається лише при першому рендері (еквівалентно componentDidMount)
 
   function toggleState() {
     setSubscriptionMenuState(prevState => !prevState);
@@ -59,7 +46,7 @@ export default function Menu() {
             />
           </button>
           <ul className={`${styles.subscriptions__menu} ${subscriptionMenuState ? styles.subscriptions__menu_active : ''}`}>
-            {details?.map((subscription) => (
+            {services?.map((subscription) => (
               <Subscription key={subscription.id}><a href="#">{subscription.name}</a></Subscription>
             ))}
           </ul>
@@ -70,7 +57,7 @@ export default function Menu() {
         <MenuItem text="About" img={about} link="/about" alt="About-icon" />
       </ul>
       <ul className={styles['subscriptions-menu-burger']}>
-        {details?.map((subscription) => (
+        {services?.map((subscription) => (
           <Subscription key={subscription.id}><a href="#">{subscription.name}</a></Subscription>
         ))}
       </ul>

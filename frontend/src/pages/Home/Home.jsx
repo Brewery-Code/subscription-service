@@ -9,15 +9,15 @@ import Request from './Request/Request';
 import styles from './Home.module.scss';
 
 
-export default function Home() {
+export default function Home({ state }) {
   return (
     <>
       <Startup />
-      <Subscriptions />
+      <Subscriptions services={state.services} />
       <Steps />
       <Invite />
       <AboutUs />
-      <FAQ />
+      <FAQ faq={state.faq} />
       <Request />
     </>
   )

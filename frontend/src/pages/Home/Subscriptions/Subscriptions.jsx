@@ -1,30 +1,14 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-
 import Title from '../../../components/UI/Title/Title'
 
 import styles from './Subscriptions.module.scss';
 import Button from '../../../components/UI/Button/Button';
 
-export default function Subscriptions() {
-  const [details, setDetails] = useState(null);
-
-  useEffect(() => {
-    axios.get('http://localhost:8000/api/services')
-      .then(res => {
-        const data = res.data;
-        setDetails(data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
-
+export default function Subscriptions({ services }) {
   return (
     <section className={styles.subscriptions}>
       <Title>Choose a subscription</Title>
       <div className={styles.subscriptions__list}>
-        {details?.map((subscription) => (
+        {services?.map((subscription) => (
           <div className={`${styles.subscription}`} key={subscription.id}>
             <div className={styles.subscription__content}>
               <h3 className={`${styles.subscription__title}`}>{subscription.name}</h3>
