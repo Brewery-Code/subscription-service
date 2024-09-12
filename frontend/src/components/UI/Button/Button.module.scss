@@ -92,7 +92,14 @@
     width: 100%;
 
     font-size: 1.125rem;
-    background-color: $colorBlue;
     color: #fff;
+
+    background-color: $colorBlue;
+    border: 1px solid $colorBlue;
+
+    &:hover {
+      color: #000;
+      background-color: transparent;
+    }
   }
 }
