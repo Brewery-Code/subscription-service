@@ -1,4 +1,5 @@
 from django.db import models
+from subscription_service import settings
 from subscriptions.models import Service, SubscriptionPlan
 
 class Subscription(models.Model):
@@ -10,7 +11,7 @@ class Subscription(models.Model):
         ('cancelled', 'Cancelled'),
     ]
     
-    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
     plan = models.ForeignKey(SubscriptionPlan, on_delete=models.CASCADE)
     start_date = models.DateField()

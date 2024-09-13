@@ -5,7 +5,7 @@ from order.models import Subscription
 from core.models import FAQ
 from .serializer import FAQSerializer, ServiceSerializer, SubscriptionPlanSerializer, SubscriptionSerializer
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
 
 # Subscriptions app
@@ -37,4 +37,4 @@ class FAQViewSet(viewsets.ModelViewSet):
     
     queryset = FAQ.objects.all()
     serializer_class = FAQSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticatedOrReadOnly]
