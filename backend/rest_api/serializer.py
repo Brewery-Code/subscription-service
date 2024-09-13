@@ -1,4 +1,5 @@
 from dataclasses import field
+from email.policy import default
 from rest_framework import serializers
 from subscriptions.models import Service, SubscriptionPlan
 from order.models import Subscription
@@ -27,7 +28,7 @@ class SubscriptionSerializer(serializers.ModelSerializer):
    
     service = ServiceSerializer()
     plan = SubscriptionPlanSerializer()
-
+    # user = serializers.HiddenField(default=serializers.CurrentUserDefault())
     class Meta:
         model = Subscription
         fields = ['id', 'user', 'service', 'plan', 'start_date', 'end_date', 'is_active', 'status']

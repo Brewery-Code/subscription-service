@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'user.apps.UserConfig',
     'core.apps.CoreConfig',
     'rest_framework',
+    'rest_framework_simplejwt',
     'corsheaders',
+    'djoser',
     
 ]
 
@@ -63,7 +65,17 @@ MIDDLEWARE = [
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny'
-    ]
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+DJOSER = {
+    'SERIALIZERS': {
+        'user_create': 'djoser.serializers.UserCreateSerializer',
+        'user': 'djoser.serializers.UserSerializer',
+    },
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
