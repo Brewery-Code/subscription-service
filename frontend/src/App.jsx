@@ -6,14 +6,9 @@ import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
 
+import IP from '../IP';
+
 export default function App() {
-  const IPList = {
-    localhost: 'localhost',
-    Vitalii: '192.168.1.5',
-  }
-
-  const IP = IPList.Vitalii;
-
   const [services, setServices] = useState(null);
 
   useEffect(() => {
