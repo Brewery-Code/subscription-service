@@ -1,5 +1,6 @@
 from typing import Any
 from rest_framework import serializers
+from user.models import CustomUser
 from subscriptions.models import Service, SubscriptionPlan
 from order.models import Subscription
 from core.models import FAQ
@@ -112,3 +113,25 @@ class FAQSerializer(serializers.ModelSerializer):
     class Meta:
         model = FAQ
         fields = ['id', 'question', 'answer']
+
+
+# User app
+class CustomUserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'name', 'email', 'password']
+        extra_kwargs = {
+            'password': {'write_only': True}
+        }
+
+    def create(self, validated_data):
+        user = CustomUser(
+            email=validated_data['email'],
+            name=validated_data['name']
+        )
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
+            

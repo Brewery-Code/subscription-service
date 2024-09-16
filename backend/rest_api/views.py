@@ -1,10 +1,12 @@
 from rest_framework import viewsets, serializers
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from order.models import Subscription
 from subscriptions.models import Service, SubscriptionPlan
 from core.models import FAQ
-from .serializer import FAQSerializer, ServiceSerializer, SubscriptionPlanSerializer, SubscriptionSerializer
+from .serializer import CustomUserSerializer, FAQSerializer, ServiceSerializer, SubscriptionPlanSerializer, SubscriptionSerializer
 
 
 # Subscriptions app
@@ -68,3 +70,12 @@ class FAQViewSet(viewsets.ModelViewSet):
     queryset = FAQ.objects.all()
     serializer_class = FAQSerializer
     authentication_classes = [SessionAuthentication, BasicAuthentication]
+
+
+# User app
+class RegisterUserView(APIView):
+    def post(self, request) -> Response:
+        serializer = CustomUserSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        return Response(serializer.data)
