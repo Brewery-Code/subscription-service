@@ -74,8 +74,19 @@ class FAQViewSet(viewsets.ModelViewSet):
 
 # User app
 class RegisterUserView(APIView):
+    """
+    Представлення для реєстрації нового користувача через API.
+
+    Це представлення обробляє POST-запити для створення нового користувача на основі даних, переданих у запиті.
+    Використовує серіалізатор CustomUserSerializer для валідації та збереження користувача.
+    """
+
     def post(self, request) -> Response:
+        """
+        Обробляє POST-запит для реєстрації нового користувача.
+        """
         serializer = CustomUserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
         return Response(serializer.data)
+
