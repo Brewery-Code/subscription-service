@@ -117,6 +117,15 @@ class FAQSerializer(serializers.ModelSerializer):
 
 # User app
 class CustomUserSerializer(serializers.ModelSerializer):
+    """
+    Серіалізатор для моделі CustomUser, який використовується для створення нового користувача
+    та роботи з його даними.
+
+    Поля:
+    -----
+    password : CharField
+        Поле для введення паролю. Це поле є write-only, тобто не повертається у відповідях API.
+    """
     password = serializers.CharField(write_only=True)
 
     class Meta:
@@ -127,11 +136,23 @@ class CustomUserSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data):
+        """
+        Створює нового користувача на основі перевірених даних.
+        
+        Перевірені дані включають:
+        - email (електронна пошта)
+        - name (ім'я користувача)
+        - password (пароль)
+
+        Пароль хешується перед збереженням користувача для забезпечення безпеки.
+        """
         user = CustomUser(
             email=validated_data['email'],
             name=validated_data['name']
         )
+        # Хешування паролю
         user.set_password(validated_data['password'])
         user.save()
         return user
+
             
