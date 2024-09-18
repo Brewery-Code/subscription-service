@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import startupImg from '../../../assets/img/startup.jpeg';
 
-import SubscriptionApplication from '../../../components/Modals/SubsciptionApplication';
+import SubscriptionApplication from '../../../components/Modals/SubscriptionApplication/SubsciptionApplication';
 import Button from '../../../components/UI/Button/Button';
 
 import styles from './Startup.module.scss';

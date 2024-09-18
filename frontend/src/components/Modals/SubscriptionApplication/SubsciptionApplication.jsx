@@ -1,6 +1,6 @@
 import { createPortal } from 'react-dom';
 
-import Button from '../UI/Button/Button';
+import Button from '../../UI/Button/Button';
 import styles from './SubscriptionApplication.module.scss';
 
 export default function SubscriptionApplication({ isOpen, toggleModal }) {
@@ -24,8 +24,8 @@ export default function SubscriptionApplication({ isOpen, toggleModal }) {
               <input className={styles.form__input} type="text" name="email" id="email" placeholder="Enter your e-mail" />
             </div>
             <div className={styles.form__item}>
-              <label className={styles.form__title} htmlFor="number">Phone</label>
-              <input className={styles.form__input} type="number" name="" id="number" placeholder="Enter your phone" />
+              <label className={styles.form__title} htmlFor="phone">Phone</label>
+              <input className={styles.form__input} type="number" name="phone" id="number" placeholder="Enter your phone" />
             </div>
             <div className={styles.form__item}>
               <Button type='modal-apply'>Apply</Button>
