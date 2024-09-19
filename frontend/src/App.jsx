@@ -36,9 +36,38 @@ export default function App() {
       });
   }, []);
 
+
+  const [subscriptionsPlans, setSubscriptionsPlans] = useState(null);
+
+  useEffect(() => {
+    axios.get(`http://${IP}:8000/api/subscription-plans`)
+      .then(res => {
+        const data = res.data;
+        setSubscriptionsPlans(data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
+
+  const [subscription, setSubscription] = useState(0);
+  const [subscriptionPlan, setSubscriptionPlan] = useState(0);
+
+  const selectSubscription = (id) => {
+    setSubscription(services.find(item => item.id === id));
+    setSubscriptionPlan(subscriptionsPlans.filter(item => item.service === id));
+    console.log(subscription);
+    console.log(subscriptionPlan);
+  }
+
+
   let state = {
     services: services,
     faq: faqList,
+    subscription: subscription,
+    subscriptionPlan: subscriptionPlan,
+    selectSubscription: selectSubscription,
   }
 
   return (

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import arrow from '../../../../assets/icons/arrow-slim.svg';
 import about from '../../../../assets/icons/about.svg';
@@ -12,7 +13,8 @@ import MenuItem from './MenuItem/MenuItem';
 
 import styles from './Menu.module.scss';
 
-export default function Menu({ services }) {
+
+export default function Menu({ services, selectSubscription }) {
   const [subscriptionMenuState, setSubscriptionMenuState] = useState(false);
 
   const [arrowRotate, setArrowRotate] = useState(0);
@@ -28,6 +30,7 @@ export default function Menu({ services }) {
   function isMobile() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   }
+
 
   return (
     <>
@@ -47,7 +50,11 @@ export default function Menu({ services }) {
           </button>
           <ul className={`${styles.subscriptions__menu} ${subscriptionMenuState ? styles.subscriptions__menu_active : ''}`}>
             {services?.map((subscription) => (
-              <Subscription key={subscription.id}><a href="#">{subscription.name}</a></Subscription>
+              <Subscription key={subscription.id}
+                onClick={() => selectSubscription(subscription.id)}
+              >
+                <NavLink to={"subscription"}>{subscription.name}</NavLink>
+              </Subscription>
             ))}
           </ul>
         </li>
