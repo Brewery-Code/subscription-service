@@ -39,7 +39,7 @@ class SubscriptionPlanSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = SubscriptionPlan
-        fields = ['id', 'service', 'name', 'price', 'duration', 'is_active']
+        fields = ['id', 'service', 'name', 'price', 'duration', 'benefits' , 'is_active']
 
 
 # Order app
