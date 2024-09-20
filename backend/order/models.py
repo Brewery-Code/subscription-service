@@ -32,7 +32,6 @@ class Subscription(models.Model):
     is_active = models.BooleanField(default=True, help_text="Визначає, чи активна підписка.")
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='active', help_text="Статус підписки.")
 
-
     class Meta:
         db_table = 'subscriptions_table'
         verbose_name = 'Subscription'
