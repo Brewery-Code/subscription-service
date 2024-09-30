@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import Title from '../../components/UI/Title/Title';
 import Invite from '../Home/Invite/Invite';
 import FAQ from '../Home/FAQ/FAQ';
@@ -13,14 +15,34 @@ export default function Subscription({ subscription, subscriptionPlan, faq }) {
   }
 
   const durations = [...new Set(subscriptionPlan.map(item => item.duration))];
+  const [duration, setDuration] = useState(durations[0]);
+  const updateDuration = (duration) => {
+    setDuration(duration);
+  };
+
+
 
   return (
     <section className={styles.subscription}>
       <Title>Choose a {subscription.name} Plan</Title>
-      <p className={styles.subscription__subtitle}>Select the subscription type for a period of <span>{durations} months</span></p>
+      <p className={styles.subscription__subtitle}>Select the subscription type for a period of <span>{duration} months</span></p>
+      <div className={styles.filter}>
+        <div className={styles.filter__list}>
+          {durations.length >= 2 ? (
+            durations.map((item) => (
+              <div key={item}
+                className={duration === item ? `${styles.filter__item} ${styles.filter__item_active}` : styles.filter__item}
+                onClick={() => updateDuration(item)}
+              >{item} months</div>
+            ))
+          ) : (
+            none
+          )}
+        </div>
+      </div>
       <div className={styles.plan}>
         <div className={styles.plan__list}>
-          {subscriptionPlan?.map((item) => (
+          {subscriptionPlan?.filter(item => item.duration === duration).map((item) => (
             <div className={styles.plan__item} key={item.id}>
               <h2 className={styles.plan__title}>{item.name}</h2>
               <span className={styles.plan__line}></span>

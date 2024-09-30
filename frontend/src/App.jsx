@@ -57,8 +57,6 @@ export default function App() {
   const selectSubscription = (id) => {
     setSubscription(services.find(item => item.id === id));
     setSubscriptionPlan(subscriptionsPlans.filter(item => item.service === id));
-    console.log(subscription);
-    console.log(subscriptionPlan);
   }
 
 

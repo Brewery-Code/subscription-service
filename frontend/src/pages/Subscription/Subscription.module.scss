@@ -17,6 +17,41 @@
     }
   }
 
+  .filter {
+    display: flex;
+    justify-content: center;
+    margin: 52px 0 48px 0;
+
+    &__list {
+      display: flex;
+      justify-content: center;
+      border-radius: 12px;
+      border: 1px solid $colorBlue;
+    }
+
+    &__item {
+      padding: 17px 48px;
+
+      font-size: 18px;
+      line-height: 150%;
+      color: rgb(3, 3, 3);
+
+      &:first-of-type {
+        border-radius: 12px 0 0 12px;
+      }
+
+      &:last-of-type {
+        border-radius: 0 12px 12px 0;
+      }
+
+      &_active {
+        color: #fff;
+
+        background-color: $colorBlue;
+      }
+    }
+  }
+
   .plan {
     margin-top: 52px;
 
