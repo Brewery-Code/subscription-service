@@ -7,7 +7,7 @@ from order.models import Subscription
 from subscriptions.models import Service, SubscriptionPlan
 from core.models import FAQ
 from .serializer import CustomUserSerializer, FAQSerializer, ServiceSerializer, SubscriptionPlanSerializer, SubscriptionSerializer
-
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 # Subscriptions app
 class ServiceViewSet(viewsets.ModelViewSet):
@@ -20,8 +20,8 @@ class ServiceViewSet(viewsets.ModelViewSet):
     
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer
-    # permission_classes = [IsAuthenticated]
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+    # authentication_classes = [JWTAuthentication]
 
 
 class SubscriptionPlanViewSet(viewsets.ModelViewSet):
@@ -69,6 +69,7 @@ class FAQViewSet(viewsets.ModelViewSet):
     
     queryset = FAQ.objects.all()
     serializer_class = FAQSerializer
+    permission_classes = [IsAuthenticated]
     authentication_classes = [SessionAuthentication, BasicAuthentication]
 
 
