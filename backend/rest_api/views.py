@@ -20,7 +20,7 @@ class ServiceViewSet(viewsets.ModelViewSet):
     
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     # authentication_classes = [JWTAuthentication]
 
 
@@ -69,7 +69,6 @@ class FAQViewSet(viewsets.ModelViewSet):
     
     queryset = FAQ.objects.all()
     serializer_class = FAQSerializer
-    permission_classes = [IsAuthenticated]
     authentication_classes = [SessionAuthentication, BasicAuthentication]
 
 
