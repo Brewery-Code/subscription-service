@@ -16,16 +16,16 @@ export default function SubscriptionApplication({ isOpen, toggleModal }) {
           <h3 className={styles['subscription-application__title']}>Subscription Application</h3>
           <form className={styles.form} action="">
             <div className={styles.form__item}>
-              <label className={styles.form__title} htmlFor="name">Enter your name</label>
-              <input className={styles.form__input} type="text" name="name" id="name" placeholder="Anastasiia" />
+              <label className={styles.form__title} htmlFor="name2">Enter your name</label>
+              <input className={styles.form__input} type="text" name="name2" id="name2" placeholder="Anastasiia" />
             </div>
             <div className={styles.form__item}>
-              <label className={styles.form__title} htmlFor="email">E-mail</label>
-              <input className={styles.form__input} type="text" name="email" id="email" placeholder="Enter your e-mail" />
+              <label className={styles.form__title} htmlFor="email2">E-mail</label>
+              <input className={styles.form__input} type="text" name="email2" id="email2" placeholder="Enter your e-mail" />
             </div>
             <div className={styles.form__item}>
-              <label className={styles.form__title} htmlFor="phone">Phone</label>
-              <input className={styles.form__input} type="number" name="phone" id="number" placeholder="Enter your phone" />
+              <label className={styles.form__title} htmlFor="phone2">Phone</label>
+              <input className={styles.form__input} type="number" name="phone2" id="number2" placeholder="Enter your phone" />
             </div>
             <div className={styles.form__item}>
               <Button type='modal-apply'>Apply</Button>

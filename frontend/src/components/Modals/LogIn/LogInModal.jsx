@@ -1,12 +1,26 @@
 import { createPortal } from 'react-dom';
+import { useState } from 'react';
 
 import appleImg from '../../../assets/icons/apple.svg';
 import facebookImg from '../../../assets/icons/facebook.svg';
 import googleImg from '../../../assets/icons/google.svg';
+import CreateAccountModal from '../CreateAccount/CreateAccount';
 
 import styles from './LogInModal.module.scss';
 
 export default function LogInModal({ isOpen, toggleModal }) {
+  const [isCreateAccountOpen, setCreateAccountOpen] = useState(false);
+
+  const toggleCreateAccountModal = () => {
+    setCreateAccountOpen((prev) => !prev);
+  }
+
+  // Новий обробник подій для створення облікового запису
+  const handleCreateAccount = () => {
+    toggleCreateAccountModal(); // Відкриває CreateAccountModal
+    toggleModal(); // Закриває LogInModal
+  }
+
   return createPortal(
     <div className={`${styles.popup} ${isOpen ? styles.popup_active : ''}`}
       onClick={toggleModal}
@@ -19,16 +33,22 @@ export default function LogInModal({ isOpen, toggleModal }) {
           <h2 className={styles.popup__title}>Log in</h2>
           <div className={styles['new-user']}>
             <h3 className={styles['new-user__title']}>New user?</h3>
-            <button className={styles['new-user__create-account']}>Create an account</button>
+            <button
+              className={styles['new-user__create-account']}
+              onClick={handleCreateAccount}
+            >
+              Create an account
+            </button>
+            <CreateAccountModal isOpen={isCreateAccountOpen} toggleModal={toggleCreateAccountModal} toggleLogIn={toggleModal} />
           </div>
           <form className={styles.form} action="">
             <div className={styles.form__item}>
-              <label className={styles.form__title} htmlFor="email">Email Address</label>
-              <input className={styles.form__input} type="text" name='email' id='email' placeholder='Enter your e-mail' />
+              <label className={styles.form__title} htmlFor="email1">Email Address</label>
+              <input className={styles.form__input} type="text" name='email1' id='email1' placeholder='Enter your e-mail' />
             </div>
             <div className={styles.form__item}>
-              <label className={styles.form__title} htmlFor="email">Password</label>
-              <input className={styles.form__input} type="text" name='password' id='password' placeholder='*********' />
+              <label className={styles.form__title} htmlFor="password1">Password</label>
+              <input className={styles.form__input} type="text" name='password1' id='password1' placeholder='*********' />
             </div>
           </form>
           <div className={styles.login}>
