@@ -36,6 +36,8 @@
       line-height: 150%;
       color: rgb(3, 3, 3);
 
+      transition: background-color 0.5s ease;
+
       &:first-of-type {
         border-radius: 12px 0 0 12px;
       }
