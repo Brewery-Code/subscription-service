@@ -69,8 +69,9 @@ class FAQViewSet(viewsets.ModelViewSet):
     
     queryset = FAQ.objects.all()
     serializer_class = FAQSerializer
+
     # permission_classes = [IsAuthenticated]
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
+
 
 
 # User app
