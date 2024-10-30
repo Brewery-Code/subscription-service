@@ -3,6 +3,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import FAQ from "../../pages/FAQ/FAQ";
 import Home from "../../pages/Home/Home";
 import Subscription from '../../pages/Subscription/Subscription';
+import Profile from '../../pages/Profile/Profile';
 
 export default function Main({ state }) {
   return (
@@ -13,6 +14,7 @@ export default function Main({ state }) {
           <Route path="/home" element={<Home state={state} />} />
           <Route path="/FAQ" element={<FAQ faq={state.faq} />} />
           <Route path='/subscription' element={<Subscription subscription={state.subscription} subscriptionPlan={state.subscriptionPlan} faq={state.faq} />} />
+          <Route path='/profile' element={<Profile />} />
         </Routes>
       </div>
     </main>

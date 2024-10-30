@@ -1,4 +1,6 @@
 .log-in {
+  position: relative;
+
   padding: 9px 43px;
   background-color: $colorBlue;
   border-radius: 12px;
@@ -22,5 +24,111 @@
 
     background-color: transparent;
     color: $colorBlue;
+  }
+}
+
+.profile {
+  position: relative;
+
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 150%;
+  color: $colorBlack23;
+
+  background-color: #fff;
+}
+
+.user-img {
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  background-color: $colorBlue;
+  border-radius: 50%;
+
+  img {
+    width: 16px;
+    height: 16px;
+    object-fit: cover;
+  }
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  height: 100%;
+}
+
+.arrow {
+  position: absolute;
+  top: 47%;
+  right: -13px;
+  transition: transform 0.3s ease;
+
+  &_active {
+    transform: rotate(90deg);
+
+  }
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 4px);
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px;
+
+  background-color: #fff;
+  box-shadow: 0 20px 48px rgba(177, 177, 177, 0.4);
+  border-radius: 16px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease, visibility 1s ease;
+
+  &_active {
+    visibility: inherit;
+    opacity: 1;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #fff;
+    font-size: 17px;
+    line-height: 150%;
+    width: 100%;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $colorBlue;
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background-color: $colorBlue;
+      border-radius: 50%;
+    }
+
+    a {
+      color: black;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $colorBlue;
+      }
+    }
+
+    img {}
   }
 }

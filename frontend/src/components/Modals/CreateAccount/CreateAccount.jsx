@@ -41,12 +41,13 @@ export default function CreateAccountModal({ isOpen, toggleModal, toggleLogIn })
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json(); // Отримуємо дані з відповіді
+      const data = await response.json();
       if (!response.ok) {
-        throw new Error(data.message || 'Network response was not ok'); // Виводимо повідомлення з сервера
+        throw new Error(data.message || 'Network response was not ok');
       }
 
       console.log('Success:', data);
+      toggleModal();
     } catch (error) {
       console.error('Error:', error.message);
     }

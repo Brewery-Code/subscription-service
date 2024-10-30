@@ -8,18 +8,56 @@ import CreateAccountModal from '../CreateAccount/CreateAccount';
 
 import styles from './LogInModal.module.scss';
 
-export default function LogInModal({ isOpen, toggleModal }) {
+export default function LogInModal({ isOpen, toggleModal, toggleUserLogin }) {
   const [isCreateAccountOpen, setCreateAccountOpen] = useState(false);
 
   const toggleCreateAccountModal = () => {
     setCreateAccountOpen((prev) => !prev);
   }
 
-  // Новий обробник подій для створення облікового запису
   const handleCreateAccount = () => {
-    toggleCreateAccountModal(); // Відкриває CreateAccountModal
-    toggleModal(); // Закриває LogInModal
+    toggleCreateAccountModal();
+    toggleModal();
   }
+
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log('Form data:', formData);
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/login/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ${jwt_token}',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message || 'Network response was not ok');
+      } else {
+        localStorage.setItem('access', data.access);
+        localStorage.setItem('refresh', data.refresh);
+        toggleUserLogin();
+      }
+
+      console.log('Success:', data.token);
+      toggleModal();
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
+  };
 
   return createPortal(
     <div className={`${styles.popup} ${isOpen ? styles.popup_active : ''}`}
@@ -29,7 +67,7 @@ export default function LogInModal({ isOpen, toggleModal }) {
         <div className={`${styles.popup__content} ${styles['subscription-application']}`}
           onClick={(event) => event.stopPropagation()}
         >
-          <button className={styles.popup__crose} onClick={toggleModal}></button>
+          <button className={styles.popup__close} onClick={toggleModal}></button>
           <h2 className={styles.popup__title}>Log in</h2>
           <div className={styles['new-user']}>
             <h3 className={styles['new-user__title']}>New user?</h3>
@@ -41,20 +79,20 @@ export default function LogInModal({ isOpen, toggleModal }) {
             </button>
             <CreateAccountModal isOpen={isCreateAccountOpen} toggleModal={toggleCreateAccountModal} toggleLogIn={toggleModal} />
           </div>
-          <form className={styles.form} action="">
+          <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.form__item}>
-              <label className={styles.form__title} htmlFor="email1">Email Address</label>
-              <input className={styles.form__input} type="text" name='email1' id='email1' placeholder='Enter your e-mail' />
+              <label className={styles.form__title} htmlFor="email">Email Address</label>
+              <input className={styles.form__input} type="text" name='email' id='email1' placeholder='Enter your e-mail' value={formData.email} required onChange={handleChange} />
             </div>
             <div className={styles.form__item}>
-              <label className={styles.form__title} htmlFor="password1">Password</label>
-              <input className={styles.form__input} type="text" name='password1' id='password1' placeholder='*********' />
+              <label className={styles.form__title} htmlFor="password">Password</label>
+              <input className={styles.form__input} type="password" name="password" id="password1" placeholder="*********" value={formData.password} required onChange={handleChange} />
+            </div>
+            <div className={styles.login}>
+              <button className={styles.login__forgot}>Forgot password?</button>
+              <button type="submit" className={styles.login__login}>Log in</button>
             </div>
           </form>
-          <div className={styles.login}>
-            <button className={styles.login__forgot}>Forgot password?</button>
-            <button className={styles.login__login}>Log in</button>
-          </div>
           <div className={styles.sign}>
             <div className={styles.sign__title}>
               <span></span>
