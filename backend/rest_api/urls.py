@@ -11,7 +11,7 @@ router.register(r'faq', views.FAQViewSet)
 router.register(r'services', views.ServiceViewSet)
 router.register(r'subscription-plans', views.SubscriptionPlanViewSet)
 router.register(r'subscriptions', views.SubscriptionViewSet)
-
+router.register(r'users', views.UserViewSet, basename='user')
 
 urlpatterns = [
     path('', include(router.urls)),
