@@ -1,0 +1,57 @@
+.subscriptions {
+  grid-row: 1/3;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .subscription {
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+      padding: 69px 40px;
+      font-weight: 700;
+      font-size: 30px;
+      line-height: 140%;
+
+      background-color: greenyellow;
+      border-radius: 32px 32px 0 0;
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      gap: 24px;
+      padding: 32px 40px;
+
+      background-color: #fff;
+      border-radius: 0 0 32px 32px;
+    }
+
+    &__description {
+      font-size: 18px;
+      line-height: 140%;
+      color: rgb(35, 35, 35);
+    }
+
+    &__plan {
+      position: relative;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 130%;
+      color: $colorBlack51;
+
+      background-color: transparent;
+
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: 1px;
+        width: 100%;
+        height: 1px;
+        background-color: $colorBlack51;
+      }
+    }
+  }
+}
