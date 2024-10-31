@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import Request from '../Home/Request/Request';
@@ -16,6 +16,36 @@ export default function Profile() {
   const toggleMenuItemActive = (item) => {
     setMenuItemActive(item);
   }
+
+  const [isMobileDropdownMenuOpen, setMobileDropdowmMenuOpen] = useState(false);
+  const toggleMobileDropdownMenuOpen = () => {
+    if (windowWidth < 645) {
+      setMobileDropdowmMenuOpen(prev => !prev);
+    }
+  }
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+      handleWidthChange(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const handleWidthChange = (width) => {
+    if (width >= 650) {
+      setMobileDropdowmMenuOpen(false);
+    }
+  };
+
+  const isMobile = /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent);
 
   const chosenMenuItem = () => {
     switch (isMenuItemActive) {
@@ -40,15 +70,35 @@ export default function Profile() {
         </NavLink>
       </div>
       <div className={styles.profile__content}>
-        <div className={styles.menu}>
+        <div className={!isMobileDropdownMenuOpen ? styles.menu : `${styles.menu} ${styles.menu_active}`}
+          onClick={toggleMobileDropdownMenuOpen}
+          style={
+            isMobileDropdownMenuOpen ? {
+              height: '108px',
+
+            } : {}
+          }
+        >
           <button className={isMenuItemActive === 'info' ? `${styles.menu__item} ${styles.menu__item_active}` : styles.menu__item}
             onClick={() => toggleMenuItemActive('info')}
+            style={
+              isMobileDropdownMenuOpen ? {
+                visibility: 'inherit',
+                opacity: '1',
+              } : {}
+            }
           >
             <img src={settingsImg} alt="info-img" />
             <span>Account info</span>
           </button>
           <button className={isMenuItemActive === 'subscriptions' ? `${styles.menu__item} ${styles.menu__item_active}` : styles.menu__item}
             onClick={() => toggleMenuItemActive('subscriptions')}
+            style={
+              isMobileDropdownMenuOpen ? {
+                visibility: 'inherit',
+                opacity: '1',
+              } : {}
+            }
           >
             <img src={subscriptionsImg} alt="subscriptions-img" />
             <span>My Subscriptions</span>
@@ -56,6 +106,12 @@ export default function Profile() {
         </div>
         {chosenMenuItem()}
       </div>
+      <NavLink className={`${styles.profile__exit_mobile}`}
+        to='/home'
+      >
+        <img src={exitImg} alt="exit-img" />
+        <h5>Exit the office</h5>
+      </NavLink>
       <Request />
     </section>
   );

@@ -58,6 +58,7 @@
 }
 
 .row {
+  position: relative;
   display: flex;
   gap: 12px;
   height: 100%;
@@ -78,6 +79,8 @@
 .menu {
   position: absolute;
   top: calc(100% + 4px);
+  right: -20px;
+  width: 180px;
 
   display: flex;
   flex-direction: column;

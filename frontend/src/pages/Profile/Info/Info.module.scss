@@ -9,12 +9,22 @@
   box-shadow: 0 12px 28px rgba(244, 245, 245, 0.2);
   border-radius: 32px;
 
+  @media (max-width: $tabletSize_Big) {
+    padding: 40px 20px 32px;
+  }
+
+  @media (max-width: 645px) {
+    grid-row: inherit;
+    padding: 40px 20px 30px;
+  }
+
   &__title {
     font-weight: 700;
     font-size: 24px;
     line-height: 140%;
 
     @media (max-width: $tabletSize_Big) {
+      gap: 32px;
       font-size: 22px;
     }
   }
@@ -29,6 +39,10 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
+
+    @media (max-width: $tabletSize_Big) {
+      gap: 35px;
+    }
   }
 
   &__item {
@@ -41,6 +55,10 @@
     font-size: 15px;
     line-height: 130%;
     color: rgb(27, 27, 41);
+
+    @media (max-width: $tabletSize_Big) {
+      font-size: 14px;
+    }
   }
 
   input {
@@ -57,6 +75,10 @@
       font-size: 17px;
       line-height: 130%;
       color: rgb(143, 143, 143);
+    }
+
+    @media (max-width: $tabletSize_Big) {
+      font-size: 15px;
     }
   }
 
