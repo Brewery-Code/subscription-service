@@ -8,6 +8,9 @@ from subscriptions.models import Service, SubscriptionPlan
 from core.models import FAQ
 from .serializer import CustomUserSerializer, FAQSerializer, ServiceSerializer, SubscriptionPlanSerializer, SubscriptionSerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from user.models import CustomUser
+from rest_framework_simplejwt.tokens import RefreshToken
+
 
 # Subscriptions app
 class ServiceViewSet(viewsets.ModelViewSet):
@@ -78,9 +81,6 @@ class FAQViewSet(viewsets.ModelViewSet):
 class RegisterUserView(APIView):
     """
     Представлення для реєстрації нового користувача через API.
-
-    Це представлення обробляє POST-запити для створення нового користувача на основі даних, переданих у запиті.
-    Використовує серіалізатор CustomUserSerializer для валідації та збереження користувача.
     """
 
     def post(self, request) -> Response:
@@ -90,5 +90,24 @@ class RegisterUserView(APIView):
         serializer = CustomUserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
-        return Response(serializer.data)
+
+        refresh = RefreshToken.for_user(user)
+
+        return Response({
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
+            'user': serializer.data 
+        })
+    
+
+class UserViewSet(viewsets.ModelViewSet):
+    serializer_class = CustomUserSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return CustomUser.objects.filter(id=self.request.user.id)
+
+    def perform_update(self, serializer):
+        serializer.save()
+
 
