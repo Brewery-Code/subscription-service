@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Title from '../../components/UI/Title/Title';
 import Invite from '../Home/Invite/Invite';
 import FAQ from '../Home/FAQ/FAQ';
+import PaymentModule from '../../components/Modals/Payment/Payment';
 
 import checkMarkImg from '../../assets/icons/check-mark.svg';
 
@@ -20,7 +21,10 @@ export default function Subscription({ subscription, subscriptionPlan, faq }) {
     setDuration(duration);
   };
 
-
+  const [isModalOpen, setModalOpen] = useState(false);
+  const toggleModalOpen = () => {
+    setModalOpen((prev) => !prev);
+  }
 
   return (
     <section className={styles.subscription}>
@@ -60,7 +64,12 @@ export default function Subscription({ subscription, subscriptionPlan, faq }) {
                 <span>$</span>
                 <h3>{item.price}</h3>
               </div>
-              <button className={styles.plan__button}>Get started</button>
+              <button className={styles.plan__button}
+                onClick={toggleModalOpen}
+              >
+                Get started
+              </button>
+              <PaymentModule isOpen={isModalOpen} toggleModal={toggleModalOpen} />
             </div>
           ))}
         </div>
