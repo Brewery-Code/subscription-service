@@ -4,8 +4,19 @@ import appleImg from '../../../assets/icons/applePay.svg';
 import googleImg from '../../../assets/icons/googlePay.svg';
 
 import styles from './Payment.module.scss';
+import { useState } from 'react';
 
 export default function PaymentModule({ isOpen, toggleModal }) {
+  const [isCurrencyActive, setCurrencyActive] = useState('Bitcoin');
+  const toggleCurrency = (currency) => {
+    setCurrencyActive(currency);
+  }
+
+  const [isMenuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => {
+    setMenuOpen((isMenuOpen) => (!isMenuOpen));
+  }
+
   return createPortal(
     <div className={`${styles.popup} ${isOpen ? styles.popup_active : ''}`}
       onClick={toggleModal}
@@ -67,13 +78,47 @@ export default function PaymentModule({ isOpen, toggleModal }) {
             <h4 className={styles.crypto__title}>Payment by crypto wallet</h4>
             <div className={styles.crypto__data}>
               <h5>Select currency</h5>
-              <select name="currency" id="currency">
-                <option value="red">Червоний</option>
-                <option value="green">Зелений</option>
-                <option value="blue">Синій</option>
-                <option value="yellow">Жовтий</option>
-              </select>
+              <div className={styles.list}>
+                <div className={!isMenuOpen ? styles.list__active : `${styles.list__active} ${styles.list__active_active}`}
+                  onClick={toggleMenu}
+                >
+                  {isCurrencyActive}
+                </div>
+                <div className={styles.list__dropdown}
+                  style={{
+                    visibility: isMenuOpen ? 'inherit' : '',
+                    opacity: isMenuOpen ? '1' : '',
+                    maxHeight: isMenuOpen ? '100px' : ''
+                  }}
+                >
+                  <div className={styles.list__item}
+                    onClick={() => toggleCurrency('Bitcoin')}
+                    style={{
+                      display: isCurrencyActive === 'Bitcoin' ? 'none' : ''
+                    }}
+                  >
+                    Bitcoin
+                  </div>
+                  <div className={styles.list__item}
+                    onClick={() => toggleCurrency('Ethereum')}
+                    style={{
+                      display: isCurrencyActive === 'Ethereum' ? 'none' : ''
+                    }}
+                  >
+                    Ethereum
+                  </div>
+                  <div className={styles.list__item}
+                    onClick={() => toggleCurrency('USDT')}
+                    style={{
+                      display: isCurrencyActive === 'USDT' ? 'none' : ''
+                    }}
+                  >
+                    USDT
+                  </div>
+                </div>
+              </div>
             </div>
+            <button className={styles.crypto__pay}>Pay</button>
           </div>
         </div>
       </div>

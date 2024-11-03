@@ -11,7 +11,7 @@
   width: 100%;
   height: 100%;
 
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
   background-color: rgba($colorBlue, 10%);
   backdrop-filter: blur(5px);
 
@@ -136,6 +136,10 @@
     &__row {
       display: flex;
       gap: 20px;
+
+      .form__item {
+        max-width: 240px;
+      }
     }
 
     &__item {
@@ -181,5 +185,121 @@
       font-size: 15px;
       line-height: 130%;
     }
+  }
+
+  .crypto {
+    &__title {
+      font-size: 20px;
+      line-height: 140%;
+      font-weight: 700;
+      margin-top: 60px;
+    }
+
+    &__data {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      h5 {
+        font-size: 15px;
+        line-height: 130%;
+        color: $colorBlack51;
+      }
+    }
+
+    &__pay {
+      background-color: $colorBlue;
+      border-radius: 12px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 16px;
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 130%;
+      margin-top: 56px;
+      color: #fff;
+    }
+  }
+
+  .list {
+    cursor: pointer;
+    position: relative;
+
+    &__active {
+      position: relative;
+      width: 100%;
+      padding: 16px 24px;
+
+      font-size: 17px;
+      line-height: 130%;
+
+      background-color: rgb(241, 244, 248);
+      border-radius: 12px;
+      transition: border-radius 0.3s ease;
+
+      &::after {
+        content: '';
+        background-image: url(../../../assets/icons/arrow-bold.svg);
+        position: absolute;
+        width: 14px;
+        height: 7px;
+        background-repeat: no-repeat;
+        right: 37px;
+        top: 25px;
+        transition: transform 0.3s ease;
+      }
+
+      &::before {
+        content: '';
+
+        position: absolute;
+        background-color: #fff;
+        border-radius: 8px;
+        width: 32px;
+        height: 32px;
+        right: 29px;
+        top: 11px;
+      }
+
+      &_active {
+        border-radius: 12px 12px 0 0;
+
+        &::after {
+          content: '';
+          background-image: url(../../../assets/icons/arrow-bold.svg);
+          position: absolute;
+          width: 14px;
+          height: 7px;
+          background-repeat: no-repeat;
+          right: 37px;
+          top: 25px;
+          transform: rotate(90deg);
+        }
+      }
+    }
+
+    &__dropdown {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: absolute;
+      width: 100%;
+      padding: 0 24px 16px;
+
+      font-size: 17px;
+      line-height: 130%;
+
+      background-color: rgb(241, 244, 248);
+      border-radius: 0 0 12px 12px;
+
+      visibility: 0;
+      opacity: 0;
+      max-height: 0px;
+      transition: visibility 0.3s ease, opacity 0.5s ease, height 0.3s ease;
+    }
+
+    &__item {}
   }
 }
