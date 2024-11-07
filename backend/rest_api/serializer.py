@@ -148,7 +148,8 @@ class CustomUserSerializer(serializers.ModelSerializer):
         """
         user = CustomUser(
             email=validated_data['email'],
-            name=validated_data['name']
+            name=validated_data['name'],
+           
         )
         # Хешування паролю
         user.set_password(validated_data['password'])
