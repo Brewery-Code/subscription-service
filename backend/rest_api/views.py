@@ -7,7 +7,6 @@ from order.models import Subscription
 from subscriptions.models import Service, SubscriptionPlan
 from core.models import FAQ
 from .serializer import CustomUserSerializer, FAQSerializer, ServiceSerializer, SubscriptionPlanSerializer, SubscriptionSerializer
-from rest_framework_simplejwt.authentication import JWTAuthentication
 from user.models import CustomUser
 from rest_framework_simplejwt.tokens import RefreshToken
 
