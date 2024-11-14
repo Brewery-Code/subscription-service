@@ -95,7 +95,6 @@ class RegisterUserView(APIView):
         return Response({
             'refresh': str(refresh),
             'access': str(refresh.access_token),
-            'user': serializer.data 
         })
     
 
