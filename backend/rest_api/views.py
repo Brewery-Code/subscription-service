@@ -9,6 +9,7 @@ from core.models import FAQ
 from .serializer import CustomUserSerializer, FAQSerializer, ServiceSerializer, SubscriptionPlanSerializer, SubscriptionSerializer
 from user.models import CustomUser
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework import status
 
 
 # Subscriptions app
@@ -98,14 +99,24 @@ class RegisterUserView(APIView):
         })
     
 
-class UserViewSet(viewsets.ModelViewSet):
-    serializer_class = CustomUserSerializer
+class UserProfileView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def get_queryset(self):
-        return CustomUser.objects.filter(id=self.request.user.id)
+    def get(self, request):
+        """Повернути дані користувача"""
+        user = request.user
+        serializer = CustomUserSerializer(user)
+        return Response(serializer.data)
+    
 
-    def perform_update(self, serializer):
-        serializer.save()
+    def put(self, request):
+        """Оновити дані користувача"""
+        user = request.user 
+        serializer = CustomUserSerializer(user, data=request.data, partial=True) 
+
+        if serializer.is_valid():
+            serializer.save()  
+            return Response(serializer.data)  
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 

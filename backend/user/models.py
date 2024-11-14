@@ -57,7 +57,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     """
     
     name = models.CharField(max_length=150, unique=False, help_text='Ім\'я користувача.')
-    surname = models.CharField(max_length=255, unique=False),
+    surname = models.CharField(max_length=255, unique=False)
     email = models.EmailField(unique=True, help_text='Адреса електронної пошти користувача.')
     last_login = models.DateTimeField(null=True, blank=True, default=None, help_text='Останній вхід користувача.')
     date_joined = models.DateTimeField(default=timezone.now, help_text='Дата приєднання користувача.')

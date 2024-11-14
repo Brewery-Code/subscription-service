@@ -11,12 +11,11 @@ router.register(r'faq', views.FAQViewSet)
 router.register(r'services', views.ServiceViewSet)
 router.register(r'subscription-plans', views.SubscriptionPlanViewSet)
 router.register(r'subscriptions', views.SubscriptionViewSet)
-router.register(r'users', views.UserViewSet, basename='user')
 
 urlpatterns = [
     path('', include(router.urls)),
-    # path('auth/', include('djoser.urls')),
     path('register/', views.RegisterUserView.as_view()),
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('user/profile/', views.UserProfileView.as_view(), name='user_profile'),
 ]
