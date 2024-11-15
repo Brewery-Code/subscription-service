@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import LogInModal from '../../../../Modals/LogIn/LogInModal';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import userImg from '../../../../../assets/icons/user-icon.svg';
 import arrowImg from '../../../../../assets/icons/arrow-slim.svg';
@@ -37,10 +37,12 @@ export default function LogIn() {
     }
   }, []);
 
+  const navigate = useNavigate();
   const logout = () => {
     localStorage.clear();
     toggleUserLogin();
     toggleDropdownMenu();
+    navigate('/home');
   };
 
   return (

@@ -77,7 +77,7 @@ export default function LogInModal({ isOpen, toggleModal, toggleUserLogin }) {
             >
               Create an account
             </button>
-            <CreateAccountModal isOpen={isCreateAccountOpen} toggleModal={toggleCreateAccountModal} toggleLogIn={toggleModal} />
+            <CreateAccountModal isOpen={isCreateAccountOpen} toggleModal={toggleCreateAccountModal} toggleLogIn={toggleModal} toggleUserLogin={toggleUserLogin} />
           </div>
           <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.form__item}>

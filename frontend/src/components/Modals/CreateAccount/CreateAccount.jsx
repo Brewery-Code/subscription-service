@@ -7,7 +7,7 @@ import googleImg from '../../../assets/icons/google.svg';
 
 import styles from './CreateAccount.module.scss';
 
-export default function CreateAccountModal({ isOpen, toggleModal, toggleLogIn }) {
+export default function CreateAccountModal({ isOpen, toggleModal, toggleLogIn, toggleUserLogin }) {
   const toggleSignIn = () => {
     toggleModal();
     toggleLogIn();
@@ -46,8 +46,10 @@ export default function CreateAccountModal({ isOpen, toggleModal, toggleLogIn })
         throw new Error(data.message || 'Network response was not ok');
       }
 
-      console.log('Success:', data);
+      localStorage.setItem('access', data.access);
+      localStorage.setItem('refresh', data.refresh);
       toggleModal();
+      toggleUserLogin();
     } catch (error) {
       console.error('Error:', error.message);
     }

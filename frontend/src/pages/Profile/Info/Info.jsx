@@ -1,8 +1,20 @@
 import { useEffect, useState } from 'react';
+import IP from '../../../../IP.js';
 import styles from './Info.module.scss';
 
 export default function Info() {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState({
+    name: 'Name',
+    surname: 'Surname',
+    email: 'E-mail',
+  });
+
+
+  const [formData, setFormData] = useState({
+    name: userData.name,
+    surname: userData.surname,
+    email: userData.email,
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -14,14 +26,41 @@ export default function Info() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    sendData(formData);
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const token = localStorage.getItem("access");
+          const response = await fetch(`http://${IP}:8000/api/user/profile/`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`,
+            },
+            body: {
+              'name': `${formData.name}`,
+              'surname': `${formData.surname}`,
+              'email': `${formData.email}`,
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error("Помилка при завантаженні даних");
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      fetchData();
+    }, []);
   }
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem("access");
-        const response = await fetch("http://127.0.0.1:8000/api/users/", {
+        const response = await fetch(`http://${IP}:8000/api/user/profile/`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -34,11 +73,9 @@ export default function Info() {
         }
         const result = await response.json();
         setUserData(result);
-        console.log(result);
+        setFormData(result);
       } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
+        console.log(error);
       }
     };
 
@@ -46,20 +83,22 @@ export default function Info() {
   }, []);
 
 
+
   return (
     <div className={styles.info}>
       <h2 className={styles.info__title}>Account info</h2>
       <form className={styles.form}
-        onSubmit={''}
       >
         <div className={styles.form__body}>
           <div className={styles.form__item}>
             <label htmlFor="name">Name</label>
             <input
               type="text"
-              name='name'
-              id='name'
-              placeholder='Enter your name'
+              name="name"
+              id="name"
+              placeholder="Enter your name"
+              value={formData.name}
+              onChange={handleChange}
               required
             />
           </div>
@@ -70,6 +109,8 @@ export default function Info() {
               name='surname'
               id='surname'
               placeholder='Enter your surname'
+              value={formData.surname}
+              onChange={handleChange}
               required
             />
           </div>
@@ -79,12 +120,18 @@ export default function Info() {
               type="text"
               name='email'
               id='email'
-              placeholder='Enter yout e-mail'
+              placeholder='Enter your e-mail'
+              value={formData.email}
+              onChange={handleChange}
               required
             />
           </div>
         </div>
-        <button type='submit'>Save changes</button>
+        <button type='submit'
+          onSubmit={handleSubmit}
+        >
+          Save changes
+        </button>
       </form>
     </div>
   );
