@@ -1,0 +1,50 @@
+.successful {
+  position: fixed;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  visibility: hidden;
+
+  &_active {
+    animation: appearance 3s ease-out;
+  }
+
+  &__body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+    background-color: #000;
+    border-radius: 16px;
+
+    img {
+      width: 24px;
+    }
+  }
+}
+
+@keyframes appearance {
+  0% {
+    visibility: inherit;
+    bottom: 2%;
+    opacity: 0;
+  }
+
+  50% {
+    bottom: 13%;
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    bottom: 13%;
+  }
+}
