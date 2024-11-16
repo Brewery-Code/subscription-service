@@ -156,5 +156,52 @@ class CustomUserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+    
+    
+    # def update(self, instance, validated_data):
+    #     """
+    #     Оновлює дані користувача (name, surname, email, password).
+    #     Якщо пароль переданий, він буде хешуватися перед збереженням.
+    #     """
+    #     # Оновлюємо основні поля
+    #     instance.name = validated_data.get('name', instance.name)
+    #     instance.surname = validated_data.get('surname', instance.surname)
+    #     instance.email = validated_data.get('email', instance.email)
 
-            
+    #     # # Оновлюємо пароль, якщо він переданий
+    #     # password = validated_data.get('password', None)
+    #     # if password:
+    #     #     instance.set_password(password)
+
+    #     instance.save()  # Зберігаємо зміни в базі даних
+    #     return instance
+    
+    
+class SubscriptionPurchaseSerializer(serializers.ModelSerializer):
+    """
+    Серіалізатор для покупки підписки.
+    """
+
+    class Meta:
+        model = Subscription
+        fields = ['user', 'service', 'plan', 'start_date', 'end_date', 'status']
+    
+    def validate(self, attrs):
+        """
+        Перевіряє, чи є обраний план і сервіс активними.
+        """
+        service = attrs.get('service')
+        plan = attrs.get('plan')
+
+        if not plan.is_active:
+            raise serializers.ValidationError("The selected subscription plan is not active.")
+
+        if not service.is_active:
+            raise serializers.ValidationError("The selected service is not active.")
+
+        return attrs
+
+     
+     
+     
+     
