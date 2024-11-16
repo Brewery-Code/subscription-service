@@ -1,12 +1,12 @@
 import { createPortal } from 'react-dom';
-
+import IP from '../../../../IP.js';
 import appleImg from '../../../assets/icons/applePay.svg';
 import googleImg from '../../../assets/icons/googlePay.svg';
 
 import styles from './Payment.module.scss';
 import { useState } from 'react';
 
-export default function PaymentModule({ isOpen, toggleModal }) {
+export default function PaymentModule({ isOpen, toggleModal, subscription, subscriptionPlan }) {
   const [isCurrencyActive, setCurrencyActive] = useState('Bitcoin');
   const toggleCurrency = (currency) => {
     setCurrencyActive(currency);
@@ -15,6 +15,32 @@ export default function PaymentModule({ isOpen, toggleModal }) {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => {
     setMenuOpen((isMenuOpen) => (!isMenuOpen));
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const token = localStorage.getItem("access");
+      const response = await fetch(`http://${IP}:8000/api/user/purchase_subscription/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          "plan_id": subscriptionPlan.id,
+          "service_id": subscription.id,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Помилка при збереженні даних");
+      } else {
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return createPortal(
@@ -35,7 +61,9 @@ export default function PaymentModule({ isOpen, toggleModal }) {
               <img src={googleImg} alt="apple-img" />
             </button>
           </div>
-          <form className={styles.form}>
+          <form className={styles.form}
+            onSubmit={handleSubmit}
+          >
             <div className={styles.form__data}>
               <div className={styles.form__item}>
                 <label className={styles.form__title} htmlFor="">Card Number</label>

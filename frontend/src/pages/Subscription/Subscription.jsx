@@ -69,7 +69,7 @@ export default function Subscription({ subscription, subscriptionPlan, faq }) {
               >
                 Get started
               </button>
-              <PaymentModule isOpen={isModalOpen} toggleModal={toggleModalOpen} />
+              <PaymentModule isOpen={isModalOpen} toggleModal={toggleModalOpen} subscription={subscription} subscriptionPlan={item} />
             </div>
           ))}
         </div>

@@ -11,7 +11,7 @@ import subscriptionsImg from '../../assets/icons/subscriptions.svg';
 
 import styles from './Profile.module.scss';
 
-export default function Profile() {
+export default function Profile({ services, subscriptionPlan }) {
   const [isMenuItemActive, setMenuItemActive] = useState('info');
   const toggleMenuItemActive = (item) => {
     setMenuItemActive(item);
@@ -52,7 +52,7 @@ export default function Profile() {
       case 'info':
         return <Info />;
       case 'subscriptions':
-        return <Subscriptions />
+        return <Subscriptions services={services} subscriptionPlan={subscriptionPlan} />
       default:
         return <Info />;
     }

@@ -14,7 +14,7 @@ export default function Main({ state }) {
           <Route path="/home" element={<Home state={state} />} />
           <Route path="/FAQ" element={<FAQ faq={state.faq} />} />
           <Route path='/subscription' element={<Subscription subscription={state.subscription} subscriptionPlan={state.subscriptionPlan} faq={state.faq} />} />
-          <Route path='/profile' element={<Profile />} />
+          <Route path='/profile' element={<Profile services={state.services} subscriptionPlan={state.subscriptionPlan} />} />
         </Routes>
       </div>
     </main>
