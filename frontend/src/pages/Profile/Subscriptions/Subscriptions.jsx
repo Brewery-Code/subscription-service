@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import styles from './Subscriptions.module.scss';
 import IP from '../../../../IP.js';
 
@@ -46,7 +45,9 @@ export default function Subscriptions({ services, subscriptionPlan }) {
     <div className={styles.subscriptions}>
       {subscriptions?.map((item) => (
         <div key={item.id} className={styles.subscription}>
-          <div className={styles.subscription__title}>{item.name}</div>
+          <div className={styles.subscription__title}
+            style={{ backgroundColor: item.bg_color }}
+          >{item.name}</div>
           <div className={styles.subscription__content}>
             <p className={styles.subscription__description}>{item.description}</p>
             <button className={styles.subscription__plan}>Change plan</button>

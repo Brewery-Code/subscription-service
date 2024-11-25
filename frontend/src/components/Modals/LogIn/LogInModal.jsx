@@ -45,6 +45,7 @@ export default function LogInModal({ isOpen, toggleModal, toggleUserLogin }) {
 
       const data = await response.json();
       if (!response.ok) {
+        alert('Authorization error');
         throw new Error(data.message || 'Network response was not ok');
       } else {
         localStorage.setItem('access', data.access);

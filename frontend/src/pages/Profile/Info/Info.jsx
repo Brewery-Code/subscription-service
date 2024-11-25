@@ -44,6 +44,8 @@ export default function Info() {
 
       if (!response.ok) {
         throw new Error("Помилка при збереженні даних");
+      } else {
+        toggleSuccessfulActive();
       }
     } catch (error) {
       console.log(error);
@@ -63,6 +65,7 @@ export default function Info() {
         });
 
         if (!response.ok) {
+          alert('Помилка при завантаженні даних');
           throw new Error("Помилка при завантаженні даних");
         }
         const result = await response.json();
@@ -127,9 +130,7 @@ export default function Info() {
               />
             </div>
           </div>
-          <button type="submit"
-            onClick={toggleSuccessfulActive}
-          >
+          <button type="submit">
             Save changes
           </button>
         </form>

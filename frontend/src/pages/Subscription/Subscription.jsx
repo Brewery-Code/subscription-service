@@ -4,7 +4,7 @@ import Title from '../../components/UI/Title/Title';
 import Invite from '../Home/Invite/Invite';
 import FAQ from '../Home/FAQ/FAQ';
 import PaymentModule from '../../components/Modals/Payment/Payment';
-
+import Successful from '../../components/Modals/Successful/Successful.jsx';
 import checkMarkImg from '../../assets/icons/check-mark.svg';
 
 import styles from './Subscription.module.scss';
@@ -24,6 +24,14 @@ export default function Subscription({ subscription, subscriptionPlan, faq }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const toggleModalOpen = () => {
     setModalOpen((prev) => !prev);
+  }
+
+  const [isSuccessfulActive, setIsSuccessfulActive] = useState(false);
+  const toggleSuccessfulActive = () => {
+    setIsSuccessfulActive(true)
+    setTimeout(() => {
+      setIsSuccessfulActive(false);
+    }, 4000)
   }
 
   return (
@@ -69,7 +77,7 @@ export default function Subscription({ subscription, subscriptionPlan, faq }) {
               >
                 Get started
               </button>
-              <PaymentModule isOpen={isModalOpen} toggleModal={toggleModalOpen} subscription={subscription} subscriptionPlan={item} />
+              <PaymentModule toggleSuccessfulActive={toggleSuccessfulActive} isOpen={isModalOpen} toggleModal={toggleModalOpen} subscription={subscription} subscriptionPlan={item} />
             </div>
           ))}
         </div>
@@ -80,6 +88,7 @@ export default function Subscription({ subscription, subscriptionPlan, faq }) {
       <div className={styles.subscription__faq}>
         <FAQ faq={faq} />
       </div>
+      <Successful isSuccessfulActive={isSuccessfulActive} />
     </section>
   )
 }

@@ -43,6 +43,7 @@ export default function CreateAccountModal({ isOpen, toggleModal, toggleLogIn, t
 
       const data = await response.json();
       if (!response.ok) {
+        alert('Authorization error');
         throw new Error(data.message || 'Network response was not ok');
       }
 

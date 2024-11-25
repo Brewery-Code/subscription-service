@@ -6,7 +6,7 @@ import googleImg from '../../../assets/icons/googlePay.svg';
 import styles from './Payment.module.scss';
 import { useState } from 'react';
 
-export default function PaymentModule({ isOpen, toggleModal, subscription, subscriptionPlan }) {
+export default function PaymentModule({ isOpen, toggleModal, subscription, subscriptionPlan, toggleSuccessfulActive }) {
   const [isCurrencyActive, setCurrencyActive] = useState('Bitcoin');
   const toggleCurrency = (currency) => {
     setCurrencyActive(currency);
@@ -35,8 +35,11 @@ export default function PaymentModule({ isOpen, toggleModal, subscription, subsc
       });
 
       if (!response.ok) {
+        alert('Помилка при завантаженні даних');
         throw new Error("Помилка при збереженні даних");
       } else {
+        toggleSuccessfulActive();
+        toggleModal();
       }
     } catch (error) {
       console.log(error);
@@ -99,7 +102,7 @@ export default function PaymentModule({ isOpen, toggleModal, subscription, subsc
               </div>
             </div>
             <div>
-              <button className={styles.form__pay} type="submit">Pay with card</button>
+              <button className={styles.form__pay} type="submit" onClick={toggleSuccessfulActive}>Pay with card</button>
               <p>We do not collect information on your cards, everything is safe</p></div>
           </form>
           <div className={styles.crypto}>
